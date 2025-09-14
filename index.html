@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lluvia de palabras, fotos y corazones</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Escena 3D con perspectiva -->
+  <div class="scene">
+    <div class="sceneInner" id="sceneInner">
+      <!-- Cielo (estrellas en canvas, muy al fondo) -->
+      <canvas id="bg"></canvas>
+
+      <!-- Luna 100% CSS (difuminada) -->
+      <div class="moon" aria-hidden="true"></div>
+
+      <!-- Lluvia (palabras/fotos/corazones) con profundidad -->
+      <div id="sky"></div>
+    </div>
+  </div>
+
+  <div class="brand">hecho con ♥ para ti</div>
+  <script src="script.js"></script>
+</body>
+</html>

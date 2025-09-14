@@ -1,0 +1,119 @@
+:root{
+  --bg:#05070b;
+  --glow:#c9f1ff;
+  --heart:#ff3b6a;
+
+  /* controlados por JS */
+  --tiltX: 0deg;
+  --tiltY: 0deg;
+  --zoom: 1;
+  --persp: 900px;
+  --originX: 50%;
+  --originY: 45%;
+}
+
+html,body{
+  height:100%; margin:0;
+  background: radial-gradient(ellipse at bottom, #0a0f1c 0%, #05070b 100%);
+  overflow:hidden;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ======= ESCENA 3D ======= */
+.scene{
+  position:fixed; inset:0;
+  perspective: var(--persp);
+  perspective-origin: var(--originX) var(--originY);
+  touch-action:none;
+}
+.sceneInner{
+  position:absolute; inset:0;
+  transform-style: preserve-3d;
+  transform:
+    rotateX(var(--tiltX))
+    rotateY(var(--tiltY))
+    scale(var(--zoom));
+}
+
+/* Cielo (canvas) muy al fondo */
+#bg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  transform: translateZ(-1200px) scale(1.25);
+  z-index: 0;
+  display:block;
+}
+
+/* LUNA azul difuminada (sin cráteres) */
+.moon{
+  position:absolute;
+  right: 8%;
+  top: 12%;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  transform: translateZ(-600px);
+  z-index: 1;
+  background:
+    radial-gradient(circle at 48% 44%, #cfeaff 0%, #9fd0ff 45%, #5a96ff 70%, #0b1830 100%);
+  box-shadow:
+    0 0 60px 16px rgba(64,128,255,.28),
+    0 0 120px 32px rgba(64,128,255,.12);
+  opacity: .65;
+  mix-blend-mode: screen;
+}
+.moon::before{
+  content:"";
+  position:absolute; inset:-32%;
+  border-radius:50%;
+  background: radial-gradient(circle, rgba(64,128,255,.22), rgba(64,128,255,0) 70%);
+  filter: blur(6px);
+  pointer-events:none;
+}
+
+/* ======= LLUVIA ======= */
+/* Contenedor más grande que la pantalla para evitar cortes al inclinar */
+#sky{
+  position:absolute;
+  left:-10vw; top:-10vh;
+  width:120vw; height:120vh;   /* zona segura */
+  pointer-events:none;
+  transform-style: preserve-3d;
+  z-index: 2;
+}
+
+.brand{
+  position:fixed; right:14px; bottom:12px;
+  color:#ffffffa6; font-size:12px; user-select:none; z-index: 3;
+}
+
+.sprite{ position:absolute; will-change: transform, opacity; }
+
+/* Palabras */
+.word{
+  color:var(--glow); font-weight:600; white-space:nowrap; letter-spacing:.3px;
+  text-shadow: 0 0 6px #fff6, 0 0 18px #7cf8, 0 0 40px #9efa;
+}
+
+/* Fotos */
+.photo{ overflow:hidden; border-radius:12px;
+  box-shadow: 0 8px 20px #0008, 0 0 16px #9ef3;
+  background:#0b1830;
+}
+.photo img{display:block; width:100%; height:100%; object-fit:cover;}
+
+/* Corazones: wrapper interno para no romper el transform 3D */
+.heart { width:18px; height:18px; }
+.heart .h{
+  position:absolute; left:0; top:0;
+  width:18px; height:18px;
+  background: var(--heart);
+  transform: translate(-50%,-50%) rotate(45deg);   /* forma del corazón */
+  border-radius: 3px;
+  box-shadow: 0 0 18px #ff6f8f, 0 0 40px #ff9bb0;
+}
+.heart .h::before, .heart .h::after{
+  content:""; position:absolute; width:18px; height:18px; background:var(--heart);
+  border-radius:50%;
+}
+.heart .h::before{ left:-9px; top:0; }
+.heart .h::after { top:-9px; left:0; }
