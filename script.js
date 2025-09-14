@@ -1,9 +1,14 @@
 /* =================== CONFIG =================== */
 const WORDS = [
-  "tonta","tkm","te amo",
-  "mi vida","pompompurin","azul",
-  "me encantas","eres todo para mi","mi reina","23",
-  "preciosa","Perlita❤️","abachito?","besitos"
+  "te amo","tkm","mi vida",
+  "me encantas","mi reina","preciosa",
+  "mi amor","mi niña","mi bebé",
+  "mi corazón","eres todo para mí","mi todo",
+  "mi tesoro","mi chiquita","mi princesa",
+  "mi razón","mi cielo","mi alegría",
+  "mi bonita","mi única","mi adorada",
+  "mi favorita","mi luz","mi perlita❤️",
+  "besitos","abachito?","mi consentida"
 ];
 
 const IMAGES = [
