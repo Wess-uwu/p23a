@@ -22,7 +22,7 @@ const isTouch = matchMedia('(pointer:coarse)').matches;
 // Menos elementos en móvil
 const TOTAL_WORDS  = isTouch ? 18 : 28;
 const TOTAL_PHOTOS = isTouch ? 6  : 10;
-const TOTAL_HEARTS = isTouch ? 36 : 60;
+const TOTAL_HEARTS = isTouch ? 18 : 28;
 
 const FALL_SPEED_VH = [15, 25];      // vh/s
 const DRIFT_PX      = [6, 18];       // px
